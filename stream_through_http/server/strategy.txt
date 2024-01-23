@@ -1,0 +1,12 @@
+Server:
+    - get the sample_rate, channel, whole audio chunk
+    - transfer the chunk
+Client:
+    - get the sample rate, channel with the same as server
+    - get the chunk
+    - from the chunk, recover to the source, append to the sink
+    - muti thread.....
+
+    sample rate = 44100
+    channel = 2
+    always.
