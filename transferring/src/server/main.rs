@@ -1,21 +1,26 @@
+use std::fs::File;
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
 use std::thread;
 
 fn handle_client(mut stream: TcpStream) {
-    let mut buffer = Vec::new();
-    loop {
-        match stream.read_to_end(&mut buffer) {
-            Ok(_) => {
-                if buffer.is_empty() { return; } // connection closed
-                // println!("{:?}",buffer);
-                stream.write_all(&buffer).expect("Could not write back to the socket");
-
-                buffer.clear();
-            }
-            Err(e) => {
-                eprintln!("Failed to read from socket: {}", e);
-                return;
+    let mut buffer = [0u8;1024];
+    let mut fs = File::open("test.txt").unwrap();
+    loop{
+        match fs.read(&mut buffer) {
+            Ok(size) =>{
+                match size{
+                    0 =>{
+                        println!("{}","Done!!!!!");
+                        break;
+                    },
+                    _=>{
+                        stream.write(&mut buffer[0..size]);
+                    },
+                }
+            },
+            _=>{
+                panic!();
             }
         }
     }
