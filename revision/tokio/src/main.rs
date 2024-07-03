@@ -49,8 +49,7 @@ async fn main() {
 
         // receiver(recv);
     });
-    t1.await.unwrap();
-    t2.await.unwrap();
+    tokio::join!(t1,t2);
     // sink.sleep_until_end();
 }
 async fn sending(sender: UnboundedSender<Vec<i16>>) {
