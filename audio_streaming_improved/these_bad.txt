@@ -1,0 +1,75 @@
+
+// client_socket.recv_buf(&mut buf)
+// // loop{
+//     // let mut seq = [115,101,113,0];
+//     client_socket.send(&seq).await;
+//     // client_socket.recv_buf(&mut buf).await;
+//     // println!("{:?}", buf[buf.len()-1]);
+//     client_socket.send(&seq).await;
+//     // client_socket.recv_buf(&mut buf).await;
+//     // println!("{:?}", buf[buf.len()-1]);
+//     client_socket.send(&seq).await;
+//     // client_socket.recv_buf(&mut buf).await;
+//     // println!("{:?}", buf[buf.len()-1]);
+//     client_socket.send(&seq).await;
+//     seq[3]+=1;
+//     client_socket.send(&seq).await;
+
+// client_socket.recv_buf(&mut buf).await;
+// println!("{:?}", buf[buf.len()-1]);
+// if buf[buf.len()-1] == present{
+//     println!("no packet loss")
+// }
+// }
+
+// client_socket.send("seqa".as_bytes()).await;
+// let mut res: Vec<u8> = Vec::with_capacity(300);
+// client_socket.recv_buf(&mut res).await;
+// println!("{:?}",res);
+
+// loop {
+//     let mut res: Vec<u8> = Vec::with_capacity(300);
+//     client_socket.recv_buf(&mut res).await;
+//     // if res.len() == 1 {
+//     //     break;
+//     // }
+//     println!("{}", res.len());
+//     println!("{:?}", res);
+// }
+// let mut s1 = sink.clone();
+// let (mut tx, mut rx) = tokio::sync::mpsc::channel(50);
+// let t1 = tokio::spawn(async move {
+//     let mut seq = 0;
+//     loop {
+//         let mut res: Vec<u8> = Vec::with_capacity(300);
+//         client_socket.clone().recv_buf(&mut res).await;
+//         if res.len() < 11 {
+//             break;
+//         }
+//         println!("receiving chunk...");
+//         //purifying the chunk.....
+//         let mut purified = res[..res.len()-11].to_vec();
+//         if seq == purified[purified.len()-1]{
+
+//         }
+
+//         //
+//         let res: Vec<i16> = res[..res.len() - 11]
+//             .chunks_exact(2)
+//             .map(|chunk| i16::from_be_bytes(chunk.try_into().unwrap()))
+//             .collect();
+//         let res = rodio::buffer::SamplesBuffer::new(2, 48000, res);
+//         // s1.lock().unwrap().append(res);
+//         tx.send(res).await;
+//     }
+//     drop(tx);
+// });
+// let t2 = tokio::spawn(async move{
+//     while let Some(res) = rx.recv().await{
+//         s1.lock().unwrap().append(res);
+//     }
+// });
+// // let t2 = tokio::sp  awn();
+// // t1.await;
+// t2.await;
+// sink.lock().unwrap().sleep_until_end();

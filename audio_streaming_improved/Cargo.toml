@@ -1,0 +1,19 @@
+[package]
+name = "audio_streaming"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rodio = "0.20.1"
+tokio = { version = "1.44.1", features = ["full"] }
+tokio-util = { version = "0.7.14", features = ["full"] }
+
+[[bin]]
+name = "server"
+path = "src/server/server.rs"
+[[bin]]
+name = "client"
+path = "src/client/client.rs"
+[[bin]]
+name = "experimental"
+path = "src/experimental/experimental.rs"
